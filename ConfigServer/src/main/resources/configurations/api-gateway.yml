@@ -1,0 +1,30 @@
+spring:
+    cloud:
+        gateway:
+          server:
+            webmvc:
+              routes:
+              - id: question-service
+                uri: lb://QUESTION-SERVICE
+                predicates:
+                  - Path=/question_service/**
+              - id: quiz-service
+                uri: lb://QUIZ-SERVICE
+                predicates:
+                  - Path=/quiz/**
+              - id: user-service
+                uri: lb://USER-SERVICE
+                predicates:
+                  - Path=/User/**
+              - id: quiz-streamer-service
+                uri: lb://QUIZ-STREAMER-SERVICE
+                predicates:
+                  - Path=/quizstreamer/**
+server:
+    port: 8222
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
