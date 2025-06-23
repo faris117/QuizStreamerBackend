@@ -1,6 +1,7 @@
 spring:
-    application: 
-        name: file-manager-service
-
+    
+    application:
+        name: auth-service
     config:
         import: optional:configserver:http://localhost:8888
+

@@ -1,25 +1,34 @@
 spring:
     cloud:
         gateway:
-          server:
-            webmvc:
-              routes:
+          routes:
               - id: question-service
                 uri: lb://QUESTION-SERVICE
                 predicates:
                   - Path=/question_service/**
+                filters:
+                  - AuthenticationFilter
+                  
               - id: quiz-service
                 uri: lb://QUIZ-SERVICE
                 predicates:
                   - Path=/quiz/**
+                filters:
+                  - AuthenticationFilter
+
               - id: user-service
                 uri: lb://USER-SERVICE
                 predicates:
                   - Path=/User/**
+                filters:
+                  - AuthenticationFilter
+                
               - id: quiz-streamer-service
                 uri: lb://QUIZ-STREAMER-SERVICE
                 predicates:
                   - Path=/quizstreamer/**
+                filters:
+                  - AuthenticationFilter
 server:
     port: 8222
 
